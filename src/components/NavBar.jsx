@@ -82,6 +82,10 @@ function Navbar() {
             <Link to="/contact" onClick={() => setMenuOpen(false)}>
               Contact Us
             </Link>
+
+             <Link to="/reward" onClick={() => setMenuOpen(false)}>
+              Reward
+            </Link>
           </nav>
 
           {/* RIGHT */}

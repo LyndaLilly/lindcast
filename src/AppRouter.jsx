@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
 import HomeLayout from "./layouts/HomeLayout";
 
-import { Home, PrivacyPolicy, Terms, Disclaimer, LeaderBoard, Contact } from "./view/guest/pages";
+import { Home, PrivacyPolicy, Terms, Disclaimer, LeaderBoard, Contact, Reward} from "./view/guest/pages";
 
 import { Register, Login, VerifyEmail } from "./view/guest/auth/users";
 
@@ -27,6 +27,7 @@ function AppRouter() {
       "/disclaimer": "Disclaimer",
       "/leaderboard": "Leaderboard",
       "/contact": "Contact Us",
+      "/reward": "Reward",
     };
 
     const pageTitle = pageTitleMap[path] || "Page";
@@ -45,6 +46,7 @@ function AppRouter() {
         <Route path="/disclaimer" element={<Disclaimer />} />
         <Route path="/leaderboard" element={<LeaderBoard />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/reward" element={<Reward />} />
       </Route>
 
       {/* <Route path="/403" element={<Forbidden />} />

@@ -3,8 +3,11 @@
 // const BASE_URL = "http://172.16.84.175:8000/api";
 // const IMAGE_BASE_URL = "http://172.16.84.175:8000/uploads";
 
-const BASE_URL = "http://127.0.0.1:8000/api";
-const IMAGE_BASE_URL = "http://127.0.0.1:8000/uploads";
+// const BASE_URL = "http://127.0.0.1:8000/api";
+// const IMAGE_BASE_URL = "http://127.0.0.1:8000/uploads";
+
+const BASE_URL = "https://api.lyliportfolio.com/api";
+const IMAGE_BASE_URL = "https://api.lyliportfolio.com/public/uploads/";
 
 const ApiUrl = {
   BASE_URL,
@@ -24,6 +27,8 @@ const ApiUrl = {
   CONTACT: `${BASE_URL}/contact`,
 
   WALLET: `${BASE_URL}/wallet`,
+
+  REWARD_DASHBOARD: `${BASE_URL}/reward-dashboard`,
 };
 
 export default ApiUrl;

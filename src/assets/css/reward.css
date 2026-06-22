@@ -1,0 +1,337 @@
+.reward-page {
+  color: var(--text);
+  padding-bottom: 40px;
+}
+
+/* ================= HERO ================= */
+
+.reward-hero {
+  position: relative;
+  overflow: hidden;
+  padding: 40px;
+  border-radius: 28px;
+  margin-bottom: 30px;
+
+  background:
+    radial-gradient(circle at top left, rgba(34, 197, 94, 0.25), transparent 40%),
+    radial-gradient(circle at top right, rgba(234, 179, 8, 0.15), transparent 40%),
+    linear-gradient(135deg, #111827, #1e293b);
+
+  border: 1px solid rgba(255,255,255,0.06);
+
+  box-shadow:
+    0 20px 60px rgba(0,0,0,0.35),
+    inset 0 1px 0 rgba(255,255,255,0.05);
+}
+
+.reward-hero h1 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin-bottom: 10px;
+}
+
+.reward-hero p {
+  color: #94a3b8;
+  margin: 0;
+  font-size: 15px;
+}
+
+/* ================= STATS ================= */
+
+.reward-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 18px;
+  margin-bottom: 25px;
+}
+
+.reward-card {
+  position: relative;
+  overflow: hidden;
+
+  background: linear-gradient(
+    135deg,
+    rgba(30, 41, 59, 0.95),
+    rgba(15, 23, 42, 0.95)
+  );
+
+  border: 1px solid rgba(255,255,255,0.06);
+
+  border-radius: 22px;
+
+  padding: 22px;
+
+  transition: 0.3s ease;
+}
+
+.reward-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background: linear-gradient(
+    135deg,
+    rgba(34,197,94,0.12),
+    transparent
+  );
+
+  opacity: 0;
+  transition: 0.3s;
+}
+
+.reward-card:hover {
+  transform: translateY(-5px);
+
+  border-color: rgba(34,197,94,0.25);
+
+  box-shadow:
+    0 15px 35px rgba(0,0,0,0.25),
+    0 0 20px rgba(34,197,94,0.12);
+}
+
+.reward-card:hover::before {
+  opacity: 1;
+}
+
+.reward-card span {
+  display: block;
+  color: #94a3b8;
+  font-size: 13px;
+  letter-spacing: .5px;
+  text-transform: uppercase;
+}
+
+.reward-card h2 {
+  margin-top: 12px;
+  margin-bottom: 0;
+
+  font-size: 2rem;
+  font-weight: 800;
+
+  color: #fff;
+}
+
+/* ================= TEST CAMPAIGN ================= */
+
+.reward-test-card {
+  margin-bottom: 30px;
+
+  padding: 30px;
+
+  border-radius: 24px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(22,163,74,0.15),
+      rgba(15,23,42,0.95)
+    );
+
+  border: 1px solid rgba(34,197,94,0.15);
+
+  box-shadow:
+    0 15px 40px rgba(0,0,0,0.25);
+}
+
+.reward-test-card h3 {
+  margin-bottom: 25px;
+  font-weight: 700;
+}
+
+.reward-test-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.reward-test-grid div {
+  background: rgba(255,255,255,0.03);
+  border-radius: 18px;
+  padding: 18px;
+}
+
+.reward-test-grid strong {
+  display: block;
+  color: #94a3b8;
+  margin-bottom: 8px;
+}
+
+.reward-test-grid p {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+/* ================= LEADERBOARD ================= */
+
+.reward-leaderboard {
+  background:
+    linear-gradient(
+      135deg,
+      rgba(17,24,39,0.95),
+      rgba(15,23,42,0.95)
+    );
+
+  border-radius: 24px;
+
+  padding: 25px;
+
+  border: 1px solid rgba(255,255,255,0.06);
+
+  box-shadow:
+    0 20px 50px rgba(0,0,0,0.25);
+}
+
+.reward-leaderboard h3 {
+  margin-bottom: 20px;
+}
+
+/* ================= TABLE ================= */
+
+.reward-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.reward-table thead {
+  background: rgba(255,255,255,0.03);
+}
+
+.reward-table th {
+  padding: 16px;
+  color: #94a3b8;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: .5px;
+}
+
+.reward-table td {
+  padding: 18px 16px;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  font-weight: 500;
+}
+
+.reward-table tbody tr {
+  transition: 0.25s;
+}
+
+.reward-table tbody tr:hover {
+  background: rgba(34,197,94,0.08);
+}
+
+/* Top 3 highlight */
+
+.reward-table tbody tr:nth-child(1) {
+  background: rgba(234,179,8,0.12);
+}
+
+.reward-table tbody tr:nth-child(2) {
+  background: rgba(148,163,184,0.08);
+}
+
+.reward-table tbody tr:nth-child(3) {
+  background: rgba(180,83,9,0.10);
+}
+
+/* ================= LOADING ================= */
+
+.reward-loading {
+  min-height: 60vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ================= MOBILE ================= */
+
+@media (max-width: 768px) {
+  .reward-hero {
+    padding: 25px;
+  }
+
+  .reward-hero h1 {
+    font-size: 1.8rem;
+  }
+
+  .reward-test-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .reward-card h2 {
+    font-size: 1.5rem;
+  }
+
+  .reward-table {
+    min-width: 700px;
+  }
+}
+
+/* Force all reward content to use light text */
+
+.reward-page,
+.reward-page h1,
+.reward-page h2,
+.reward-page h3,
+.reward-page h4,
+.reward-page h5,
+.reward-page h6,
+.reward-page p,
+.reward-page strong,
+.reward-page span,
+.reward-page td,
+.reward-page th,
+.reward-page div {
+  color: #f8fafc;
+}
+
+/* Secondary text */
+
+.reward-card span,
+.reward-test-grid strong,
+.reward-table th,
+.reward-hero p {
+  color: #94a3b8 !important;
+}
+
+/* Main stat values */
+
+.reward-card h2 {
+  color: #ffffff !important;
+}
+
+/* Campaign section */
+
+.reward-test-card h3 {
+  color: #ffffff;
+}
+
+.reward-test-grid p {
+  color: #e2e8f0;
+}
+
+/* Leaderboard */
+
+.reward-leaderboard h3 {
+  color: #ffffff;
+}
+
+.reward-table td {
+  color: #f1f5f9;
+}
+
+/* Top 3 rows */
+
+.reward-table tbody tr:nth-child(1) td {
+  color: #fde68a;
+  font-weight: 700;
+}
+
+.reward-table tbody tr:nth-child(2) td {
+  color: #e2e8f0;
+  font-weight: 700;
+}
+
+.reward-table tbody tr:nth-child(3) td {
+  color: #fdba74;
+  font-weight: 700;
+}
