@@ -14,7 +14,7 @@ function Disclaimer() {
 
           <p>
             Please read this Disclaimer carefully before
-            using Crypto Predict. By accessing or using
+            using Stakeova. By accessing or using
             the platform, you acknowledge and accept the
             terms outlined below.
           </p>
@@ -29,7 +29,7 @@ function Disclaimer() {
           <h3>1. No Financial or Investment Advice</h3>
 
           <p>
-            Crypto Predict is an entertainment and
+            Stakeova is an entertainment and
             prediction platform. Information displayed on
             the platform should not be considered
             financial, investment, legal, tax, or
@@ -70,7 +70,7 @@ function Disclaimer() {
           </p>
 
           <p>
-            Crypto Predict is not responsible for losses
+            Stakeova is not responsible for losses
             resulting from user decisions, market
             movements, misunderstandings, or incorrect
             assumptions.
@@ -79,7 +79,7 @@ function Disclaimer() {
           <h3>4. Market Data Accuracy</h3>
 
           <p>
-            Crypto Predict uses live market data from
+            Stakeova uses live market data from
             external providers and exchanges.
           </p>
 
@@ -105,7 +105,7 @@ function Disclaimer() {
           </p>
 
           <p>
-            Crypto Predict does not manually alter,
+            Stakeova does not manually alter,
             manipulate, or interfere with prediction
             results.
           </p>
@@ -125,7 +125,7 @@ function Disclaimer() {
           </p>
 
           <p>
-            Crypto Predict is not responsible for user
+            Stakeova is not responsible for user
             expectations that differ from published
             platform rules.
           </p>
@@ -154,7 +154,7 @@ function Disclaimer() {
           </p>
 
           <p>
-            Crypto Predict is not liable for losses
+            Stakeova is not liable for losses
             resulting from unauthorized access caused by
             user negligence or credential sharing.
           </p>
@@ -187,7 +187,7 @@ function Disclaimer() {
 
           <p>
             To the fullest extent permitted by law,
-            Crypto Predict shall not be liable for any
+            Stakeova shall not be liable for any
             direct, indirect, incidental, consequential,
             special, or punitive damages arising from:
           </p>
@@ -212,7 +212,7 @@ function Disclaimer() {
           </p>
 
           <p>
-            Crypto Predict is not responsible for the
+            Stakeova is not responsible for the
             actions, policies, availability, or failures
             of third-party services.
           </p>

@@ -15,7 +15,7 @@ function PrivacyPolicy() {
           <h1>Privacy Policy</h1>
 
           <p>
-            Learn how Crypto Predict collects, stores,
+            Learn how Stakeova collects, stores,
             protects, and uses your information while
             providing cryptocurrency prediction markets
             and challenge prediction services.
@@ -109,7 +109,7 @@ function PrivacyPolicy() {
           <p>
             Market prices are sourced from live market
             data and are not manually manipulated by
-            Crypto Predict.
+            Stakeova.
           </p>
 
           <p>
@@ -150,7 +150,7 @@ function PrivacyPolicy() {
           <h3>6. Platform Fees</h3>
 
           <p>
-            Crypto Predict retains a 10% platform fee
+            Stakeova retains a 10% platform fee
             from successful prediction winnings.
           </p>
 
@@ -250,7 +250,7 @@ function PrivacyPolicy() {
           <h3>12. Changes to This Policy</h3>
 
           <p>
-            Crypto Predict may update this Privacy
+            Stakeova may update this Privacy
             Policy periodically.
           </p>
 

@@ -2,6 +2,9 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import ApiUrl from "../constants/ApiUrl";
 import "../assets/css/home.css";
+import { useAuth } from "../contexts/AuthContext";
+import logo from "../assets/img/icon3.png";
+import { FaUserCircle, FaSignOutAlt } from "react-icons/fa";
 
 const getUserImage = (user) => {
   if (!user?.image && !user?.profile_image) {
@@ -18,12 +21,11 @@ const getUserImage = (user) => {
 };
 
 function Navbar() {
-  const [user, setUser] = useState(null);
+  const { user, token, logout } = useAuth();
   const profileImage = getUserImage(user);
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-
-  const token = localStorage.getItem("token");
+  const [profileOpen, setProfileOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
@@ -32,23 +34,18 @@ function Navbar() {
   }, []);
 
   useEffect(() => {
-    const fetchMe = async () => {
-      if (!token) return;
-
-      try {
-        const res = await fetch(ApiUrl.ME, {
-          headers: { Authorization: `Bearer ${token}` },
-        });
-
-        const data = await res.json();
-        setUser(data.user || data);
-      } catch (e) {
-        console.log(e);
-      }
+    const handleClickOutside = () => {
+      setProfileOpen(false);
     };
 
-    fetchMe();
-  }, []);
+    if (profileOpen) {
+      document.addEventListener("click", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, [profileOpen]);
 
   return (
     <header className={`main-header ${scrolled ? "scrolled" : ""}`}>
@@ -56,20 +53,13 @@ function Navbar() {
         <div className="header-content">
           {/* LOGO */}
           <div className="logo-area">
-            <div className="logo-box">₿</div>
-            <div>
-              <h3 className="logo-text">Crypto Predict</h3>
+            <img src={logo} alt="Crypto Predict Logo" className="logo-image" />
+
+            <div className="logo-text-area">
+              <h3 className="logo-text">Stakeova</h3>
               <small className="logo-sub">Live Prediction Market</small>
             </div>
           </div>
-
-          {/* HAMBURGER ICON (MOBILE ONLY) */}
-          <button
-            className="menu-toggle"
-            onClick={() => setMenuOpen(!menuOpen)}
-          >
-            ☰
-          </button>
 
           {/* NAV LINKS */}
           <nav className={`nav-links ${menuOpen ? "active" : ""}`}>
@@ -83,9 +73,29 @@ function Navbar() {
               Contact Us
             </Link>
 
-             <Link to="/reward" onClick={() => setMenuOpen(false)}>
+            <Link to="/reward" onClick={() => setMenuOpen(false)}>
               Reward
             </Link>
+
+            {!token && (
+              <>
+                <Link
+                  to="/login"
+                  className="mobile-auth-link"
+                  onClick={() => setMenuOpen(false)}
+                >
+                  Login
+                </Link>
+
+                <Link
+                  to="/register"
+                  className="mobile-auth-link"
+                  onClick={() => setMenuOpen(false)}
+                >
+                  Register
+                </Link>
+              </>
+            )}
           </nav>
 
           {/* RIGHT */}
@@ -111,25 +121,28 @@ function Navbar() {
             ) : (
               <div
                 style={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "12px",
+                  position: "relative",
                 }}
               >
                 <div
                   className="logged-user"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setProfileOpen(!profileOpen);
+                  }}
                   style={{
                     display: "flex",
                     alignItems: "center",
                     gap: "10px",
+                    cursor: "pointer",
                   }}
                 >
                   <img
                     src={profileImage}
                     alt="profile"
                     style={{
-                      width: "42px",
-                      height: "42px",
+                      width: "35px",
+                      height: "35px",
                       borderRadius: "50%",
                       objectFit: "cover",
                       border: "2px solid #22c55e",
@@ -142,18 +155,11 @@ function Navbar() {
                       flexDirection: "column",
                     }}
                   >
-                    <small
-                      style={{
-                        color: "#aaa",
-                        fontSize: "11px",
-                      }}
-                    >
-                      Welcome back
-                    </small>
-
                     <span
+                      className="username"
                       style={{
                         fontWeight: "700",
+                        fontSize: "15px",
                       }}
                     >
                       @{user?.username}
@@ -161,18 +167,121 @@ function Navbar() {
                   </div>
                 </div>
 
-                <button
-                  className="btn btn-danger btn-sm"
-                  onClick={() => {
-                    localStorage.removeItem("token");
+                {profileOpen && (
+                  <div
+                    style={{
+                      position: "absolute",
+                      right: 0,
+                      top: "60px",
+                      width: "220px",
+                      background: "#161b22",
+                      border: "1px solid rgba(255,255,255,.08)",
+                      borderRadius: "12px",
+                      overflow: "hidden",
+                      boxShadow: "0 15px 40px rgba(0,0,0,.35)",
+                      zIndex: 1000,
+                    }}
+                  >
+                    {/* User Info */}
+                    <div
+                      style={{
+                        padding: "16px",
+                        display: "flex",
+                        alignItems: "center",
+                        gap: "12px",
+                        borderBottom: "1px solid rgba(255,255,255,.08)",
+                      }}
+                    >
+                      <img
+                        src={profileImage}
+                        alt="Profile"
+                        style={{
+                          width: "45px",
+                          height: "45px",
+                          borderRadius: "50%",
+                          objectFit: "cover",
+                          border: "2px solid #22c55e",
+                        }}
+                      />
 
-                    window.location.href = "/";
-                  }}
-                >
-                  Logout
-                </button>
+                      <div>
+                        <div
+                          style={{
+                            color: "#fff",
+                            fontWeight: "700",
+                            fontSize: "15px",
+                          }}
+                        >
+                          @{user?.username}
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Profile Button */}
+                    <Link
+                      to="/deleteaccount"
+                      onClick={() => setProfileOpen(false)}
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        gap: "10px",
+                        padding: "14px 16px",
+                        color: "#fff",
+                        textDecoration: "none",
+                        borderBottom: "1px solid rgba(255,255,255,.08)",
+                        fontWeight: "600",
+                      }}
+                    >
+                      <FaUserCircle
+                        style={{
+                          color: "#3b82f6", // Bright blue
+                          fontSize: "18px",
+                        }}
+                      />
+                      Profile
+                    </Link>
+
+                    {/* Logout Button */}
+                    <button
+                      onClick={() => {
+                        logout();
+                        localStorage.removeItem("token");
+                        window.location.href = "/";
+                      }}
+                      style={{
+                        width: "100%",
+                        display: "flex",
+                        alignItems: "center",
+                        gap: "10px",
+                        padding: "14px 16px",
+                        border: "none",
+                        background: "transparent",
+                        color: "#fff",
+                        cursor: "pointer",
+                        textAlign: "left",
+                        fontWeight: "600",
+                      }}
+                    >
+                      <FaSignOutAlt
+                        style={{
+                          color: "#ef4444", // Bright red
+                          fontSize: "18px",
+                        }}
+                      />
+                      Logout
+                    </button>
+                  </div>
+                )}
               </div>
             )}
+
+            {/* Hamburger */}
+            <button
+              className="menu-toggle"
+              onClick={() => setMenuOpen(!menuOpen)}
+            >
+              ☰
+            </button>
           </div>
         </div>
       </div>

@@ -250,8 +250,6 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-
-  padding: 18px 0;
 }
 
 /* ADD SPACE FOR FIXED HEADER */
@@ -312,7 +310,6 @@ body {
 .header-actions {
   display: flex;
   align-items: center;
-  gap: 12px;
 }
 
 .btn-login {
@@ -329,6 +326,7 @@ body {
   padding: 12px 24px;
   border-radius: 12px;
   font-weight: 700;
+  margin-left: 12px;
 }
 
 /* ================= LIVE TICKER ================= */
@@ -1028,18 +1026,37 @@ body {
     font-size: 28px;
   }
 
-  .live-ticker{
+  /* .live-ticker{
     margin-top: 34px;
-  }
+  } */
   
 }
 
 @media (max-width: 400px) {
  
-  .live-ticker{
+  /* .live-ticker{
     margin-top: 34px;
-  }
+  } */
   
+}
+
+/* Hide mobile auth links on desktop */
+.mobile-auth-link{
+    display:none;
+}
+
+/* Show them only on mobile */
+@media (max-width:768px){
+
+    .mobile-auth-link{
+        display:block;
+    }
+
+    /* Hide desktop buttons */
+    .btn-login,
+    .btn-register{
+        display:none;
+    }
 }
 
 
@@ -1556,25 +1573,6 @@ body {
   object-fit: cover;
 }
 
-/* DROPDOWN */
-.user-dropdown {
-  position: absolute;
-  right: 0;
-  top: 60px;
-  width: 220px;
-  background: #111827;
-  border: 1px solid #1f2937;
-  border-radius: 16px;
-  padding: 15px;
-  display: none;
-  flex-direction: column;
-  gap: 12px;
-  z-index: 999;
-}
-
-.user-dropdown.active {
-  display: flex;
-}
 
 /* USER INFO */
 .user-info {
@@ -1637,7 +1635,7 @@ body {
 /* DROPDOWN */
 .user-dropdown {
   position: absolute;
-  right: 0;
+  right: -125px;;
   top: 60px;
   width: 220px;
   background: #111827;
@@ -1687,5 +1685,37 @@ body {
 
   .user-toggle {
     display: block;
+  }
+}
+
+.logo-area {
+    display: flex;
+    align-items: center;
+}
+
+.logo-image {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+}
+
+.logo-text {
+    margin: 0;
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+.logo-sub {
+    color: #9ca3af;
+    font-size: 0.8rem;
+}
+
+@media(max-width: 768px){
+  .logo-text-area{
+    display: none;
+  }
+
+  .username{
+    display: none;
   }
 }

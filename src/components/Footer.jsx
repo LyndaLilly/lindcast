@@ -1,32 +1,34 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import logo from "../assets/img/icon3.png";
+
 
 function Footer() {
   return (
     <footer className="footer-section">
       <div className="container">
-
         <div className="footer-top">
           <div className="footer-brand">
-            <div className="footer-logo-box">
-              ₿
+            <div className="">
+              <img style={{ width: "150px", height: "150px" }}
+                src={logo}
+                alt="Stakeova Logo"
+                className="footer-logo-icon"
+              />
             </div>
 
             <div>
-              <h3 className="footer-logo">
-                Crypto Predict
-              </h3>
+              <h3 className="footer-logo">Stakeova</h3>
 
               <p className="footer-text2">
-                Predict market direction, compete with traders,
-                climb the leaderboard and earn rewards.
+                Predict market direction, compete with traders, climb the
+                leaderboard and earn rewards.
               </p>
             </div>
           </div>
 
           <div className="footer-nav">
-            
-             <div className="footer-column">
+            <div className="footer-column">
               <h6>Legal</h6>
 
               <Link to="/privacy" className="footer-link">
@@ -37,7 +39,7 @@ function Footer() {
               </Link>
               <Link to="/disclaimer" className="footer-link">
                 Disclaimer
-              </Link  >
+              </Link>
             </div>
 
             {/* <div className="footer-column">
@@ -51,19 +53,14 @@ function Footer() {
             <div className="footer-column">
               <h6>Company</h6>
 
-              
               <a href="/contact">Contact</a>
               <a href="mailto:support@cryptopredict.com">Support</a>
             </div>
-
-           
           </div>
         </div>
 
         <div className="footer-bottom">
-          <p>
-            © 2026 Crypto Predict. All rights reserved.
-          </p>
+          <p>© 2026 Stakeova. All rights reserved.</p>
 
           <div className="footer-social">
             <a href="#">𝕏</a>
@@ -71,7 +68,6 @@ function Footer() {
             <a href="#">Discord</a>
           </div>
         </div>
-
       </div>
     </footer>
   );

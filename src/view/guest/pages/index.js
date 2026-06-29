@@ -5,3 +5,5 @@ export {default as Disclaimer} from "./Disclaimer";
 export {default as LeaderBoard} from "./LeaderBoard";
 export {default as Contact} from "./Contact";
 export {default as Reward} from "./Reward";
+export {default as DeleteAccount} from "./DeleteAccount";
+export {default as OpenChallenge} from "./OpenChallenge";

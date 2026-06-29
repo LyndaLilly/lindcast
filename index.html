@@ -2,12 +2,94 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+
+    <!-- Mobile -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + React</title>
+
+    <!-- Theme -->
+    <meta name="theme-color" content="#0f172a" />
+    <meta name="color-scheme" content="dark light" />
+
+    <!-- SEO -->
+    <title>Stakeova | Predict Crypto Prices & Earn Rewards</title>
+
+    <meta
+      name="description"
+      content="Stakeova is a cryptocurrency prediction platform where users predict Bitcoin and other cryptocurrency prices, compete on the leaderboard, and earn rewards."
+    />
+
+    <meta
+      name="keywords"
+      content="Stakeova, crypto prediction, Bitcoin prediction, Ethereum prediction, cryptocurrency, crypto rewards, crypto leaderboard"
+    />
+
+    <meta name="author" content="Stakeova" />
+    <meta name="robots" content="index, follow" />
+
+    <link rel="canonical" href="https://stakeova.com/" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/icon2.png" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Stakeova" />
+    <meta
+      property="og:title"
+      content="Stakeova | Predict Crypto Prices & Earn Rewards"
+    />
+    <meta
+      property="og:description"
+      content="Predict cryptocurrency prices, compete with other users, and earn rewards on Stakeova."
+    />
+    <meta property="og:url" content="https://stakeova.com/" />
+    <meta property="og:image" content="https://stakeova.com/icon2.png" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="Stakeova | Predict Crypto Prices & Earn Rewards"
+    />
+    <meta
+      name="twitter:description"
+      content="Predict crypto prices, climb the leaderboard, and earn rewards."
+    />
+    <meta
+      name="twitter:image"
+      content="https://stakeova.com/icon2.png"
+    />
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Stakeova",
+        "url": "https://stakeova.com",
+        "description": "Predict cryptocurrency prices and earn rewards."
+      }
+    </script>
+
+    <!-- Google Analytics -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-0WCS61HRNQ"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "G-0WCS61HRNQ");
+    </script>
   </head>
+
   <body>
     <div id="root"></div>
+
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

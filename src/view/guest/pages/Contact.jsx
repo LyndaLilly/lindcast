@@ -5,16 +5,24 @@ import ApiUrl from "../../../constants/ApiUrl";
 function Contact() {
   // ================= CHAT STATE =================
   const [chatOpen, setChatOpen] = useState(false);
-  const [messages, setMessages] = useState([
-    {
-      from: "support",
-      text: "Hi 👋 How can we help you today?",
-      time: new Date().toLocaleTimeString(),
-    },
-  ]);
+  const [messages, setMessages] = useState([]);
+  const [conversationId, setConversationId] = useState(null);
 
   const [input, setInput] = useState("");
   const chatRef = useRef(null);
+
+  const guestId = (() => {
+    let id = localStorage.getItem("stakeova_guest_id");
+
+    if (!id) {
+      id =
+        Date.now().toString(36) + Math.random().toString(36).substring(2, 10);
+
+      localStorage.setItem("stakeova_guest_id", id);
+    }
+
+    return id;
+  })();
 
   useEffect(() => {
     if (chatRef.current) {
@@ -22,30 +30,93 @@ function Contact() {
     }
   }, [messages]);
 
-  const sendMessage = () => {
-    if (!input.trim()) return;
+  const sendMessage = async () => {
+    if (!input.trim() || !conversationId) return;
 
-    const newMsg = {
-      from: "user",
-      text: input,
-      time: new Date().toLocaleTimeString(),
-    };
-
-    setMessages((prev) => [...prev, newMsg]);
-    setInput("");
-
-    // fake support reply
-    setTimeout(() => {
-      setMessages((prev) => [
-        ...prev,
-        {
-          from: "support",
-          text: "Thanks for reaching out 🚀 We’ll respond shortly.",
-          time: new Date().toLocaleTimeString(),
+    try {
+      const res = await fetch(ApiUrl.CHAT_SEND, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
         },
-      ]);
-    }, 1200);
+        body: JSON.stringify({
+          conversation_id: conversationId,
+          guest_id: guestId,
+          message: input,
+        }),
+      });
+
+      const data = await res.json();
+
+      if (data.status) {
+        setInput("");
+        loadMessages(conversationId);
+      }
+    } catch (err) {
+      console.log(err);
+    }
   };
+
+  const startConversation = async () => {
+    try {
+      const res = await fetch(ApiUrl.CHAT_START, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          guest_id: guestId,
+        }),
+      });
+
+      const data = await res.json();
+
+      if (data.status) {
+        setConversationId(data.conversation.id);
+        loadMessages(data.conversation.id);
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const loadMessages = async (id = conversationId) => {
+    if (!id) return;
+
+    try {
+      const res = await fetch(ApiUrl.CHAT_MESSAGES, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          conversation_id: id,
+          guest_id: guestId,
+        }),
+      });
+
+      const data = await res.json();
+
+      if (data.status) {
+        setMessages(data.messages);
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  useEffect(() => {
+    if (!chatOpen || !conversationId) return;
+
+    const timer = setInterval(() => {
+      loadMessages();
+    }, 3000);
+
+    return () => clearInterval(timer);
+  }, [chatOpen, conversationId]);
 
   const [form, setForm] = useState({
     name: "",
@@ -66,59 +137,57 @@ function Contact() {
     });
   };
 
- const submitContact = async (e) => {
-  e.preventDefault();
+  const submitContact = async (e) => {
+    e.preventDefault();
 
-  setLoading(true);
-  setSuccess("");
+    setLoading(true);
+    setSuccess("");
 
-  try {
-    const res = await fetch(ApiUrl.CONTACT, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-      body: JSON.stringify(form),
-    });
-
-    const data = await res.json().catch(() => null);
-
-    if (!res.ok) {
-      setSuccess(data?.message || "Something went wrong ❌");
-      return;
-    }
-
-    if (data?.status) {
-      setSuccess("Message sent successfully 🚀");
-
-      setForm({
-        name: "",
-        email: "",
-        subject: "",
-        message: "",
-        website: "",
-        startedAt: Date.now(),
+    try {
+      const res = await fetch(ApiUrl.CONTACT, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify(form),
       });
-    } else {
-      setSuccess(data?.message || "Failed to send message ❌");
+
+      const data = await res.json().catch(() => null);
+
+      if (!res.ok) {
+        setSuccess(data?.message || "Something went wrong ❌");
+        return;
+      }
+
+      if (data?.status) {
+        setSuccess("Message sent successfully 🚀");
+
+        setForm({
+          name: "",
+          email: "",
+          subject: "",
+          message: "",
+          website: "",
+          startedAt: Date.now(),
+        });
+      } else {
+        setSuccess(data?.message || "Failed to send message ❌");
+      }
+    } catch (err) {
+      console.log(err);
+      setSuccess("Server error ❌");
+    } finally {
+      setLoading(false);
     }
-
-  } catch (err) {
-    console.log(err);
-    setSuccess("Server error ❌");
-  } finally {
-    setLoading(false);
-  }
-};
-
+  };
 
   return (
     <div className="contact-page">
       {/* HERO */}
       <section className="contact-hero">
         <div className="container">
-          <div className="contact-badge">📞 Contact Crypto Predict</div>
+          <div className="contact-badge">📞 Contact Stakeova</div>
 
           <h1 className="contact-title">
             We'd Love To <span>Hear From You</span>
@@ -156,7 +225,10 @@ function Contact() {
 
                 <button
                   className="btn btn-success mt-2"
-                  onClick={() => setChatOpen(true)}
+                  onClick={() => {
+                    setChatOpen(true);
+                    startConversation();
+                  }}
                 >
                   Start Chat
                 </button>
@@ -271,7 +343,7 @@ function Contact() {
           <div className="chat-box">
             {/* HEADER */}
             <div className="chat-header">
-              <h5>Crypto Predict Support</h5>
+              <h5>Stakeova Support</h5>
               <button onClick={() => setChatOpen(false)}>✖</button>
             </div>
 
@@ -280,10 +352,17 @@ function Contact() {
               {messages.map((msg, i) => (
                 <div
                   key={i}
-                  className={`chat-msg ${msg.from === "user" ? "user" : "support"}`}
+                  className={`chat-msg ${
+                    msg.sender_type === "user" ? "user" : "support"
+                  }`}
                 >
-                  <p>{msg.text}</p>
-                  <small>{msg.time}</small>
+                  <p>{msg.message}</p>
+                  <small>
+                    {new Date(msg.created_at).toLocaleTimeString([], {
+                      hour: "2-digit",
+                      minute: "2-digit",
+                    })}
+                  </small>
                 </div>
               ))}
             </div>

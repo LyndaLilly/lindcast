@@ -14,7 +14,7 @@ function Terms() {
 
           <p>
             These Terms & Conditions govern the use of
-            Crypto Predict and outline the rights,
+            Stakeova and outline the rights,
             responsibilities, and obligations of all users.
           </p>
 
@@ -30,7 +30,7 @@ function Terms() {
           <p>
             By creating an account, funding a wallet,
             making predictions, participating in challenge
-            predictions, or using any part of Crypto Predict,
+            predictions, or using any part of Stakeova,
             you agree to be bound by these Terms &
             Conditions.
           </p>
@@ -43,7 +43,7 @@ function Terms() {
           </p>
 
           <p>
-            By using Crypto Predict, you confirm that all
+            By using Stakeova, you confirm that all
             information provided during registration is
             accurate and complete.
           </p>
@@ -70,7 +70,7 @@ function Terms() {
           <h3>4. Wallet Funding</h3>
 
           <p>
-            Users may fund their Crypto Predict wallet
+            Users may fund their Stakeova wallet
             using supported payment methods.
           </p>
 
@@ -130,7 +130,7 @@ function Terms() {
           <h3>7. Platform Fees</h3>
 
           <p>
-            Crypto Predict retains a 10% platform fee from
+            Stakeova retains a 10% platform fee from
             successful prediction winnings.
           </p>
 
@@ -147,7 +147,7 @@ function Terms() {
           <h3>8. Fair Market Settlement</h3>
 
           <p>
-            Crypto Predict does not manually manipulate
+            Stakeova does not manually manipulate
             market prices, prediction outcomes, or
             settlement results.
           </p>
@@ -186,7 +186,7 @@ function Terms() {
           </p>
 
           <p>
-            Crypto Predict reserves the right to conduct
+            Stakeova reserves the right to conduct
             security reviews before processing
             withdrawals.
           </p>
@@ -205,7 +205,7 @@ function Terms() {
           </p>
 
           <p>
-            Crypto Predict reserves the right to reject
+            Stakeova reserves the right to reject
             withdrawal requests where banking information
             cannot be verified.
           </p>
@@ -226,13 +226,13 @@ function Terms() {
           <h3>12. Suspension and Termination</h3>
 
           <p>
-            Crypto Predict may suspend or terminate user
+            Stakeova may suspend or terminate user
             accounts where fraud, abuse, security threats,
             or violations of these Terms are detected.
           </p>
 
           <p>
-            The platform may temporarily restrict access
+            The platform will temporarily restrict access
             while investigations are conducted.
           </p>
 
@@ -252,7 +252,7 @@ function Terms() {
           <h3>14. Limitation of Liability</h3>
 
           <p>
-            Crypto Predict provides its services on an
+            Stakeova provides its services on an
             "as available" basis.
           </p>
 
@@ -267,7 +267,7 @@ function Terms() {
           <h3>15. Changes to These Terms</h3>
 
           <p>
-            Crypto Predict reserves the right to update
+            Stakeova reserves the right to update
             these Terms & Conditions at any time.
           </p>
 

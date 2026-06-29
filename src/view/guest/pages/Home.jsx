@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import ApiUrl from "../../../constants/ApiUrl";
 
 import FetchCard from "../../../components/FeedCard";
+import { useAuth } from "../../../contexts/AuthContext";
 
 const getUserImage = (user) => {
   if (!user?.image && !user?.profile_image) {
@@ -20,6 +21,7 @@ const getUserImage = (user) => {
 };
 
 function Home() {
+  const { user, token } = useAuth();
   const [scrolled, setScrolled] = useState(false);
 
   const [pageLoading, setPageLoading] = useState(true);
@@ -28,9 +30,6 @@ function Home() {
   const [activities, setActivities] = useState([]);
   const [activeBets, setActiveBets] = useState([]);
   const [wallet, setWallet] = useState(0);
-  const [user, setUser] = useState(null);
-
-  const token = localStorage.getItem("token");
 
   const [loadingCoins, setLoadingCoins] = useState(true);
   const [coinsLoaded, setCoinsLoaded] = useState(false);
@@ -340,7 +339,7 @@ function Home() {
   //       <div className="loader-content">
   //         <div className="crypto-spinner">₿</div>
 
-  //         <h2>Crypto Predict</h2>
+  //         <h2>Stakeova</h2>
 
   //         <p>Loading live markets...</p>
   //       </div>
@@ -423,10 +422,20 @@ function Home() {
           </p>
 
           <div className="hero-banner-actions">
-            <button className="btn btn-success btn-lg">🚀 Launch App</button>
+            <a
+              href="https://play.google.com/store/apps/details?id=com.lyli.stakeova"
+              className="btn btn-success btn-lg"
+            >
+              🚀 Launch App
+            </a>
 
             <button className="btn btn-outline-light btn-lg">
-              📈 Explore Markets
+              <a
+                href="https://play.google.com/store/apps/details?id=com.lyli.stakeova"
+                className="btn btn-success btn-lg"
+              >
+                📈 Explore Markets
+              </a>
             </button>
           </div>
         </div>
@@ -440,7 +449,7 @@ function Home() {
           <div className="text-center mb-5">
             <h2 className="section-title">
               Why Traders Love
-              <span> Crypto Predict</span>
+              <span> Stakeova</span>
             </h2>
 
             <p className="section-text">
@@ -545,28 +554,44 @@ function Home() {
 
       {/* ================= CTA ================= */}
       <section className="cta-section pt-5">
-       
-          <div className="cta-card">
-            <div className="cta-badge">🚀 Join other Active Predictors</div>
+        <div className="cta-card">
+          <div className="cta-badge">🚀 Join other Active Predictors</div>
 
-            <h2 className="cta-title">
-              Predict Market Moves.
-              <span> Earn Real Rewards.</span>
-            </h2>
+          <h2 className="cta-title">
+            Predict Market Moves.
+            <span> Earn Real Rewards.</span>
+          </h2>
 
-            <p className="cta-text">
-              Create predictions on BTC, ETH, SOL and win big.
-              Compete with traders, climb the leaderboard and win rewards.
-            </p>
+          <p className="cta-text">
+            Create predictions on BTC, ETH, SOL and win big. Compete with
+            traders, climb the leaderboard and win rewards.
+          </p>
 
-            <div className="cta-actions">
-              <button className="btn btn-success btn-lg">Get Started</button>
-            </div>
+          <div className="cta-actions">
+            <button className="btn btn-success btn-lg">
+              <a
+                style={{ textDecoration: "none", color: "white" }}
+                href="register"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Get Started
+              </a>
+            </button>
           </div>
-       
+        </div>
       </section>
 
-      <button className="floating-launch-btn">Launch App</button>
+      <button className="floating-launch-btn">
+        <a
+          style={{ textDecoration: "none", color: "white" }}
+          href="https://play.google.com/store/apps/details?id=com.lyli.stakeova"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Launch App
+        </a>
+      </button>
     </div>
   );
 }
